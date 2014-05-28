@@ -1,2 +1,3 @@
-module.exports = (layer, settings) ->
+module.exports = (layer, settings, next) ->
   layer.backgroundColor = settings.replaceWithThisColor
+  next()
