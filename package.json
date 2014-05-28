@@ -1,0 +1,17 @@
+{
+  "name": "background-replacer",
+  "main": "lib/middleware.coffee",
+  "description": "Adds a background-color to every layer",
+  "settings": {
+    "replaceWithThisColor": {
+      "type": "string",
+      "default": "hotpink"
+    }
+  },
+  "enigines": {
+    "csshat": ">2.0.0"
+  },
+  "scripts": {
+    "test": "jasmine-node spec --coffee"
+  }
+}
