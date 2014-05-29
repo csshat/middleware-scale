@@ -1,4 +1,4 @@
-# require main module
+# require main module (defined as `main` in package.json)
 middleware = require '..'
 
 # layer object to test on
