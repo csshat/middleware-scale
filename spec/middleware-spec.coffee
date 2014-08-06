@@ -9,7 +9,7 @@ next = null
 
 describe 'Background replacer middleware', ->
   beforeEach ->
-    layer = {}
+    layer = { notifications: [] }
     next = jasmine.createSpy()
 
   it 'should set backgroundColor depending on settings', ->
@@ -19,4 +19,4 @@ describe 'Background replacer middleware', ->
       next.callCount > 0
 
     runs ->
-      expect(layer.backgroundColor).toEqual 'red'
+      expect(layer.background.color).toEqual { r: 255, g: 0, b: 0, a: 1 }
