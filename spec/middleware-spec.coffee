@@ -20,3 +20,12 @@ describe 'Background replacer middleware', ->
 
     runs ->
       expect(layer.background.color).toEqual { r: 255, g: 0, b: 0, a: 1 }
+
+  it 'should add a notification to layer', ->
+    middleware(layer, { replaceWithThisColor: 'red', beAnnoyingWithNotifications: true }, next)
+
+    waitsFor ->
+      next.callCount > 0
+
+    runs ->
+      expect(layer.notifications.length).toEqual 1
