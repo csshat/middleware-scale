@@ -45,7 +45,7 @@ module.exports = (layer, settings, next) ->
       layer.bounds.width = Number((value * scale).toFixed(1))
 
   # Font size
-  if (layer.textStyles? && layer.textStyles.length > 1)
+  if (layer.textStyles? and layer.textStyles.length > 1)
     for textStyle, index in layer.textStyles
       if (typeof textStyle.font isnt 'undefined') and (typeof textStyle.font.size isnt 'undefined')
         value = layer.textStyles[index].font.size
