@@ -14,14 +14,14 @@ module.exports = (layer, settings, next) ->
   rounding = roundingList[settings.scaleRoundingMethod]
 
   # Bounds
-  for key, value of layer.bounds
+  for key, value of layer.bounds?
     if rounding isnt false
       layer.bounds[key] = Math[rounding](value * scale)
     else
       layer.bounds[key] = Number((value * scale).toFixed(1))
 
   # Shadows
-  for shadow, index in layer.shadows
+  for shadow, index in layer.shadows?
     for key, value of shadow
       if isNumber(value)
         if rounding isnt false
@@ -30,7 +30,7 @@ module.exports = (layer, settings, next) ->
           layer.shadows[index][key] = Number((value * scale).toFixed(1))
 
   # Radius
-  for key, value of layer.radius
+  for key, value of layer.radius?
     if rounding isnt false
       layer.bounds[key] = Math[rounding](value * scale)
     else
@@ -45,7 +45,7 @@ module.exports = (layer, settings, next) ->
       layer.bounds.width = Number((value * scale).toFixed(1))
 
   # Font size
-  if (layer.textStyles? and layer.textStyles.length > 1)
+  if layer.textStyles? and layer.textStyles.length > 1
     for textStyle, index in layer.textStyles
       if (typeof textStyle.font isnt 'undefined') and (typeof textStyle.font.size isnt 'undefined')
         value = layer.textStyles[index].font.size
@@ -53,7 +53,7 @@ module.exports = (layer, settings, next) ->
           layer.textStyles[index].font.size = Math[rounding](value * scale)
         else
           layer.textStyles[index].font.size  = Number((value * scale).toFixed(1))
-  else
+  else if layer.baseTextStyle?
     if typeof layer.baseTextStyle.font.size isnt 'undefined'
       value = layer.baseTextStyle.font.size
       if rounding isnt false
