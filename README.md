@@ -1,5 +1,4 @@
-# Background replacer
+middleware-scale
+================
 
-[![Build Status](https://travis-ci.org/marekhrabe/background-replacer.svg?branch=master)](https://travis-ci.org/marekhrabe/background-replacer)
-
-Adds a background-color to every layer
+Scale middleware for CSS Hat 2
