@@ -1,16 +1,22 @@
 {
-  "name": "background-replacer",
-  "title": "Background Replacer",
+  "name": "csshat-middleware-scale",
+  "title": "Scale middleware",
   "main": "lib/middleware.coffee",
-  "description": "Adds a background-color to every layer. So useful",
+  "description": "It scales values according to values",
   "settings": {
-    "replaceWithThisColor": {
-      "type": "string",
-      "default": "hotpink"
+    "scale": {
+      "type": "percentage",
+      "default": "100"
     },
-    "beAnnoyingWithNotifications": {
-      "type": "boolean",
-      "default": true
+    "scaleRoundingMethod": {
+      "type": "select",
+      "options": [
+        "No rounding",
+        "Round (1.5 –> 2)",
+        "Floor (1.5 –> 1)",
+        "Ceil (1.4 –> 2)"
+      ],
+      "default": "No rounding"
     }
   },
   "enigines": {
@@ -18,8 +24,5 @@
   },
   "scripts": {
     "test": "jasmine-node spec --coffee"
-  },
-  "dependencies": {
-    "tinycolor2": "^1.0.0"
   }
 }
