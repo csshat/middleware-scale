@@ -48,6 +48,9 @@ describe 'Scale middleware', ->
           inset: false
         }
       ]
+      baseTextStyle: {
+        font: size: 10
+      }
       textStyles: [
         {
           font: {
@@ -63,7 +66,7 @@ describe 'Scale middleware', ->
       border:
         width: 4
     }
-  next = jasmine.createSpy()
+    next = jasmine.createSpy()
 
   it 'should scale values up depending on settings', ->
     middleware(layer, { scale: 200, scaleRoundingMethod: 'Round (1.5 –> 2)' }, next)
