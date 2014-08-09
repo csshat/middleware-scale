@@ -5,6 +5,9 @@ module.exports = (layer, settings, next) ->
   scale = settings.scale / 100
   # Prevent dividing by zero or infinity
   scale = 1 if scale is 0 or isNumber(scale) is false
+  
+  # Short-circuit middleware when scale is 100% (no-op)
+  return next() if scale is 1
 
   roundingList =
     'Round (1.5 –> 2)': 'round'
