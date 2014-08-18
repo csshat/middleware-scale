@@ -49,4 +49,16 @@ module.exports = (layer, settings, next) ->
   if layer.baseTextStyle?.font?.size?
     layer.baseTextStyle.font.size = processValue layer.baseTextStyle.font?.size
 
+  if layer.paths?
+    processArray = (c) ->
+      for i, value of c
+        c[i] = processValue value
+
+    for path in layer.paths
+      for pathComponent in path
+        processArray pathComponent['rect'] if pathComponent['rect']
+        processArray pathComponent['ellipse'] if pathComponent['ellipse']
+        processArray pathComponent['move'] if pathComponent['move']
+        processArray pathComponent['line'] if pathComponent['line']
+
   next()
