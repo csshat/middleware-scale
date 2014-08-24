@@ -27,7 +27,7 @@
       "default": "No rounding"
     }
   },
-  "enigines": {
+  "engines": {
     "csshat": ">2.0.0"
   },
   "scripts": {
