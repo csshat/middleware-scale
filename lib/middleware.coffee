@@ -49,6 +49,7 @@ module.exports = (layer, settings, next) ->
   if layer.baseTextStyle?.font?.size?
     layer.baseTextStyle.font.size = processValue layer.baseTextStyle.font?.size
 
+  # Simple shape layers (ellipse, rectangle) and bezier paths (move, line, bezier)
   if layer.paths?
     processArray = (c) ->
       for i, value of c
@@ -59,6 +60,7 @@ module.exports = (layer, settings, next) ->
         processArray pathComponent['rect'] if pathComponent['rect']
         processArray pathComponent['ellipse'] if pathComponent['ellipse']
         processArray pathComponent['move'] if pathComponent['move']
+        processArray pathComponent['bezier'] if pathComponent['bezier']
         processArray pathComponent['line'] if pathComponent['line']
 
   next()
