@@ -65,6 +65,49 @@ describe 'Scale middleware', ->
       ]
       border:
         width: 4
+      paths: [
+        [
+          {
+            rect: [13, 10, 69, 63]
+          }
+        ],
+        [
+          {
+            ellipse: [60, 7, 25, 23]
+          }
+        ],
+        [
+          {
+            move: [62, 40]
+          },
+          {
+            bezier: [57.714844, 25.019531, 45, 26, 45, 26]
+          },
+          {
+            bezier: [45, 26, 33.003906, 14.550781, 25, 16]
+          },
+          {
+            bezier: [16.996094, 17.449219, 24.660156, 32.140625, 28, 52]
+          },
+          {
+            bezier: [31.339844, 71.859375, 38.851562, 68.824219, 53, 67]
+          },
+          {
+            bezier: [67.148438, 65.175781, 66.285156, 54.980469, 62, 40]
+          }
+        ],
+        [
+          {
+            move: [46, 15]
+          },
+          {
+            line: [9, 10]
+          },
+          {
+            line: [46, 15]
+          }
+        ]
+      ]
     }
     next = jasmine.createSpy()
 
@@ -173,3 +216,51 @@ describe 'Scale middleware', ->
 
     runs ->
       expect(layer.border.width).toEqual 8
+
+  it 'should scale path coordinates depending on settings', ->
+    middleware(layer, { scale: 50, scaleRoundingMethod: 'No rounding'}, next)
+
+    waitsFor ->
+      next.callCount > 0
+
+    runs ->
+      expect(layer.paths[0]).toEqual [
+        rect: [6.5, 5, 34.5, 31.5]
+      ]
+
+      expect(layer.paths[1]).toEqual [
+        ellipse: [30, 3.5, 12.5, 11.5]
+      ]
+
+      expect(layer.paths[2]).toEqual [
+        {
+          move: [31, 20]
+        },
+        {
+          bezier: [28.9, 12.5, 22.5, 13, 22.5, 13]
+        },
+        {
+          bezier: [22.5, 13, 16.5, 7.3, 12.5, 8]
+        },
+        {
+          bezier: [8.5, 8.7, 12.3, 16.1, 14, 26]
+        },
+        {
+          bezier: [15.7, 35.9, 19.4, 34.4, 26.5, 33.5]
+        },
+        {
+          bezier: [33.6, 32.6, 33.1, 27.5, 31, 20]
+        }
+      ]
+
+      expect(layer.paths[3]).toEqual [
+        {
+          move: [23, 7.5]
+        },
+        {
+          line: [4.5, 5]
+        },
+        {
+          line: [23, 7.5]
+        }
+      ]
